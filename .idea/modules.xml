@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-jdbc/spring-boot-jdbc.iml" filepath="$PROJECT_DIR$/spring-boot-jdbc/spring-boot-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-web.iml" filepath="$PROJECT_DIR$/spring-boot-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-web-thymeleaf/spring-boot-web-thymeleaf.iml" filepath="$PROJECT_DIR$/spring-boot-web-thymeleaf/spring-boot-web-thymeleaf.iml" />
+    </modules>
+  </component>
+</project>

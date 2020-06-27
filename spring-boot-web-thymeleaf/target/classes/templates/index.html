@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <!--操作文本，直接文本-->
+        <span th:text="北京尚学堂"></span>
+        <hr>
+        <!--操作文本，引用文本-->
+        <span th:text="${msg}"></span>
+        <hr>
+        <!--标签中引用文本-->
+        <input th:value="${msg}">
+        <hr>
+        <!--字符串的方法-->
+        <span th:text="${#strings.isEmpty(msg)}"></span>
+        <hr>
+        <span th:text="${#strings.contains(msg,'T')}"></span>
+        <hr>
+        <span th:text="${#strings.startsWith(msg,'a')}"></span>
+        <hr>
+        <span th:text="${#strings.endsWith(msg,'b')}"></span>
+        <hr>
+        <span th:text="${#strings.length(msg)}"></span>
+        <hr>
+        <span th:text="${#strings.indexOf(msg,'o')}"></span>
+        <hr>
+        <span th:text="${#strings.substring(msg,2)}"></span>
+        <hr>
+        <span th:text="${#strings.substring(msg,2,5)}"></span>
+        <hr>
+        <span th:text="${#strings.toUpperCase(msg)}"></span>
+        <hr>
+        <span th:text="${#strings.toLowerCase(msg)}"></span>
+        <hr>
+        <!--日期格式的方法-->
+        <span th:text="${date}"></span>
+        <hr>
+        <span th:text="${#dates.format(date)}"></span>
+        <hr>
+        <span th:text="${#dates.format(date,'yyy/MM/dd')}"></span>
+        <hr>
+        <span th:text="${#dates.year(date)}"></span>
+        <hr>
+        <span th:text="${#dates.month(date)}"></span>
+        <hr>
+        <span th:text="${#dates.day(date)}"></span>
+        <hr>
+        <!--条件判断-->
+        <div>
+           <span th:if="${sex}=='男'">
+            性别：男
+        </span>
+            <span th:if="${sex}=='女'">
+            性别：女
+        </span>
+        </div>
+        <hr>
+        <!--switch条件-->
+        <div th:switch="${id}">
+            <span th:case="1">ID为1</span>
+            <span th:case="2">ID为2</span>
+            <span th:case="3">ID为3</span>
+            <span th:case="*">ID为*</span>
+        </div>
+        <hr>
+        <!--获取对象、遍历数组及一些list的操作，索引、计数、大小、奇数、偶数、首个、末个-->
+        <table border="1" width="50%">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Index</th>
+                <th>Count</th>
+                <th>Size</th>
+                <th>Odd</th>
+                <th>Even</th>
+                <th>First</th>
+                <th>Last</th>
+            </tr>
+            <tr th:each="u,index : ${list}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.name}"></td>
+                <td th:text="${u.age}"></td>
+                <td th:text="${index.index}"></td>
+                <td th:text="${index.count}"></td>
+                <td th:text="${index.size}"></td>
+                <td th:text="${index.odd}"></td>
+                <td th:text="${index.even}"></td>
+                <td th:text="${index.first}"></td>
+                <td th:text="${index.last}"></td>
+            </tr>
+        </table>
+        <!--查看获取到的map的格式-->
+        <table border="1" width="50%">
+            <tr>
+                <th>Value</th>
+            </tr>
+            <tr th:each="m : ${map}">
+                <td th:text="${m}"></td>
+            </tr>
+        </table>
+        <!--获取Map的k/v键值对-->
+        <table border="1" width="50%">
+            <tr>
+                <th>Key</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr th:each="m : ${map}">
+                <td th:text="${m.key}"></td>
+                <td th:text="${m.value.id}"></td>
+                <td th:text="${m.value.name}"></td>
+                <td th:text="${m.value.age}"></td>
+            </tr>
+        </table>
+        <hr>
+        <!--用th:href/th:src/th:action都可以-->
+        <!--绝对路径-->
+        <a th:href="@{http://www.baidu.com}">打开百度</a>
+        <hr>
+        <!--相对于项目根的路径-->
+        <a th:href="@{/showRequest}">打开servletRequest</a>
+        <hr>
+        <!--相对于服务器根的路径，如果一个tomcat中部署了多个项目，用这个方便一些，可以访问其他项目的资源-->
+        <!--<a th:href="@{~/project2/resourceName}">相对于服务器的根路径</a>-->
+        <hr>
+        <hr>
+        <!--普通URL传递参数-->
+        <a th:href="@{/show2?id=1&name=zhangsan}">普通URL传递参数方式一</a>
+        <hr>
+        <a th:href="@{/show2(id=2,name=lisi)}">普通URL传递参数方式二</a>
+        <hr>
+        <!--这个用了不好使。。。-->
+        <!--<a th:href="@{'/show2?id='+${id}+'&name='+&{name}}">普通URL传递参数方式三</a>-->
+        <!--这个用了不好使。。。-->
+        <a th:href="@{/show2(id=${id},name=${name})}">普通URL传递参数方式四</a>
+        <hr>
+        <hr>
+        <!--restful风格参数传递-->
+        <hr>
+        <!--一个参数-->
+        <a th:href="@{/restful1/{id}(id=1)}">restful格式传参方式一</a>
+        <hr>
+        <!--两个参数-->
+        <a th:href="@{/restful2/{id}/{name}(id=2,name=zhangsan)}">restful格式传参方式二</a>
+        <hr>
+        <!--两个参数混合正常传参和restful传参-->
+        <a th:href="@{/restful3/{id}(id=3,name=lisi)}">restful格式传参方式三</a>
+        <hr>
+        <!--从域中取值-->
+        <a th:href="@{/restful4/{id}(id=${id},name=${name})}">restful格式传参方式四</a>
+
+    </body>
+</html>

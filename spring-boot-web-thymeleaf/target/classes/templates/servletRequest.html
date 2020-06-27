@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        HttpServletRequest:<span th:text="${#request.getAttribute('req')}"></span>
+        HttpServletRequest:<span th:text="${#httpServletRequest.getAttribute('req')}"></span>
+        <hr>
+        HttpSession:<span th:text="${session.ses}"></span>
+        HttpSession:<span th:text="${#session.getAttribute('ses')}"></span>
+        HttpSession:<span th:text="${#httpSession.getAttribute('ses')}"></span>
+        <hr>
+        HttpServletContext:<span th:text="${application.app}"></span>
+        HttpServletContext:<span th:text="${#servletContext.getAttribute('app')}"></span>
+    </body>
+</html>
